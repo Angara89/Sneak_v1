@@ -11,13 +11,16 @@ private:
 
 
 public:
+	int dx;
+	int dy;
 	std::vector<int> arrX;
 	std::vector<int> arrY;
 	int length;
-	char decide(COORD apple);
+	void decide(COORD apple);
 	bool compareCoordApple(COORD apple);
 	COORD getHead();
 	BrainSneak(int widthWall, int heightWall);
 	COORD getTail();
+	class BrainSneakEx{};
 };
 
