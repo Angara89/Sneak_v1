@@ -17,6 +17,7 @@ public:
 	std::vector<int> arrY;
 	int length;
 	void decide(COORD apple);
+	void usersDecide(int k);
 	bool compareCoordApple(COORD apple);
 	COORD getHead();
 	BrainSneak(int widthWall, int heightWall);

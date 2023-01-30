@@ -3,10 +3,16 @@
 void BrainSneak::decide(COORD apple)
 {
 	COORD head = getHead();
-
 	
-
-
+	char lastChoose;// узнаем какой был последний выбор
+	if (dy == 1)
+		lastChoose = 'd';
+	if (dx == 1)
+		lastChoose = 'r';
+	if (dy == -1)
+		lastChoose = 'u';
+	if (dx == -1)
+		lastChoose = 'l';
 
 
 
@@ -38,10 +44,17 @@ void BrainSneak::decide(COORD apple)
 	do
 	{
 
-		if (rightChoose = false)
-		{
+
+		if (rightChoose == false && count == 1)
+			choose = 'd';
+		if (rightChoose == false && count == 2)
+			choose = 'u';
+		if (rightChoose == false && count == 3)
+			choose = 'r';
+		if (rightChoose == false && count == 4)
+			choose = 'l';
+		if (rightChoose == false && count == 5)
 			choose = 'n';
-		}
 
 		switch (choose) // пропускаем код нажатой клавиши внутрь оператора выбора
 		{
@@ -62,15 +75,21 @@ void BrainSneak::decide(COORD apple)
 			tdx = 1;
 			break;
 		case 'n': // если ничего
+			tdy = dy;
+			tdx = dx;
 			break;
 		}
 		rightChoose = true;
 		for (int i = 1; i < length; i++)
-			if ((arrX.back() + tdx) == arrX[i] && (arrY.back() + tdy) == arrY[i]) // если совпадение найдено в цикле - прерываемся
+		{
+			int r = arrX.back() + tdx;
+			int rr = arrX[i];
+			if ((r == rr) && ((arrY.back() + tdy) == arrY[i])) // если совпадение найдено в цикле - прерываемся
 				rightChoose = false;
-		if (count == 100)
+		}
+			if (count == 100)
 			throw BrainSneakEx();
-		count++;
+		++count;
 
 	} while (!rightChoose);
 
@@ -97,7 +116,28 @@ void BrainSneak::decide(COORD apple)
 	}
 }
 
-	
+void BrainSneak::usersDecide(int k)
+{
+	switch (k) // пропускаем код нажатой клавиши внутрь оператора выбора
+	{
+	case 80: // если была нажата клавиша вниз
+		dy = 1; // то приращение по оси ординат будет положительным
+		dx = 0; // по оси абсцисс приращение нулевое
+		break;
+	case 72: // если вверх
+		dy = -1; // аналогично согласно геометрической логике
+		dx = 0;
+		break;
+	case 75: // если влево
+		dy = 0;
+		dx = -1;
+		break;
+	case 77: // если вправо
+		dy = 0;
+		dx = 1;
+		break;
+	}
+}
 	
 
 bool BrainSneak::compareCoordApple(COORD apple)
