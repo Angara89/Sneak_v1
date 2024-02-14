@@ -36,7 +36,7 @@ int main()
 		apple.Y = rand() % (height - 2) + 1;
 	} while (Brain.compareCoordApple(apple));
 
-	int sleep_time = 10; // переменна€ частоты кадров 
+	int sleep_time = 100; // переменна€ частоты кадров 
 
 	char snake = '*'; // символ дл€ отображени€ тела "змейки"
 	char appleSimbol = 'o'; // символ дл€ отображени€ "€блока"

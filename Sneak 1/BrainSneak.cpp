@@ -43,8 +43,6 @@ void BrainSneak::decide(COORD apple)
 	int count = 0;
 	do
 	{
-
-
 		if (rightChoose == false && count == 1)
 			choose = 'd';
 		if (rightChoose == false && count == 2)
